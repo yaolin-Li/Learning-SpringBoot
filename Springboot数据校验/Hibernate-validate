@@ -1,0 +1,13 @@
+SpringBoot对表单数据校验的技术特点：
+    SpringBoot中使用了Hibernate-validate校验框架。
+    而该校验框架已经包含在:
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    因此不需要额外导入jar包
+
+步骤1：
+    在实体类Users.java上添加校验规则。
+步骤2：
+    在Controller中对目标方法做数据校验。

@@ -1,0 +1,15 @@
+1.首先在resources/static下创建静态页面upload.html
+简单做一个上传文件的按钮
+2.创建一个controller，在开头使用@RestController相当于
+@Controller+@ResponseBody。记得在返回响应函数前添加
+映射关系@RequestMapping("/fileUploadController")。
+如果是接收一个文件，需要接收参数MultipartFile filename。
+3.启动器App
+
+******************************
+创建了这几个文件之后，就能够上传啦。但是上传单个文件的大小和
+上传总文件的大小有限制。为了上传更大的文件，可以在resources目录
+下创建application.properties文件，添加上
+spring.servlet.multipart.maxFileSize=200MB
+spring.servlet.multipart.max-request-size=200MB
+！不同springboot版本，增大上传文件大小的命令不同

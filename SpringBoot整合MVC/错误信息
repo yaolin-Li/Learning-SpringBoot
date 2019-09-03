@@ -1,0 +1,15 @@
+com.alibaba.druid.pool.DruidDataSource   : create connection error
+开了vpn没关
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+上面才是最新的名称，而不是com.mysql.jdbc.Driver。
+
+
+
+开发数据库相关的项目时，出现如下的异常：org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+解决办法：
+根据提示需要在配置数据库的连接信息中，在MySQL的URL后面加上“?serverTimezone=UTC” ，如下所示：
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC
+
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.lyl.mapper.UsersMapper.insertUser
+https://blog.csdn.net/ppppfly/article/details/46847299

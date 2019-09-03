@@ -1,0 +1,66 @@
+一般来说在web.xml里我们需要
+<servlet>
+	<servlet-name>FirstServlet</servlet-name>
+	<servlet-class>com.lyl.servlet.FirstServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>FirstServlet</servlet-name>
+	<url-pattern>/first</url-pattern>
+</servlet-mapping>
+
+而我们用springboot整合servlet
+两种创建方法：
+1.使用注释
+    public class xxx{}上方写@WebServlet(name="FirstServlet",urlPatterns="/first")
+    name就等于<servlet-name>,urlPatterns就等于<url-pattern>
+	记得实现接口HttpServlet
+2.在启动器中，添加一个方法
+	@Bean
+	public ServletRegistrationBean getServletRegistrationBean() {
+		ServletRegistrationBean bean = new ServletRegistrationBean(new FirstServlet());
+		bean.addUrlMappings("/first");
+		return bean;
+	}
+    !注意@Bean标签不能少
+
+
+
+	一般在web.xml里我们这样定义filter
+<fliter>
+	<fliter-name>FirstServlet</fliter-name>
+	<fliter-class>com.lyl.servlet.FirstFliter</fliter-class>
+</fliter>
+
+<fliter-mapping>
+	<fliter-name>FirstFliter</fliter-name>
+	<url-pattern>/first</url-pattern>
+</fliter-mapping>
+
+而我们用springboot整合Filter
+两种创建方法：
+1.使用注释
+    public class xxx{}上方写@WebFilter(filterName="FirstFilter",urlPatterns="/second")
+    name就等于<servlet-name>,urlPatterns就等于<url-pattern>
+	记得实现接口Filter
+2.在启动器中，添加两个方法
+	@Bean
+	public ServletRegistrationBean getServletRegistrationBean() {
+		ServletRegistrationBean bean = new ServletRegistrationBean(new FirstServlet());
+		bean.addUrlMappings("/second");
+		return bean;
+	}
+
+	@Bean
+	public FilterRegistrationBean getServletRegistrationBean() {
+		FilterRegistrationBean bean = new FilterRegistrationBean(new FirstServlet());
+		bean.addUrlMappings("/second");
+		return bean;
+	}
+
+我们用springboot整合listener
+1.使用注释
+    public class xxx{}上方写@WebListener
+	记得实现接口ServletContextListener
+
+   

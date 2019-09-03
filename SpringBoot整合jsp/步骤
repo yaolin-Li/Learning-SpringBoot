@@ -1,0 +1,7 @@
+创建controller处理数据，并且在其中使用MOdel类来将Controller
+中承载信息的List传到jsp中。最后通过return跳转视图。
+
+在项目的main目录下创建webapp/WEB-INF/jsp/,并且创建.jsp文件
+:userList.jsp。
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+这一段代码是引用jstl中的c标签。

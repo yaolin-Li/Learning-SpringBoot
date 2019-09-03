@@ -1,0 +1,17 @@
+首先在src/main/resources下创建templates文件。这个文件名称固定
+不能乱写。在templates文件下创建userList.ftl文件。所有的格式化的
+视图层技术都需要templates文件。
+
+其他的就是控制器和启动器了。与之前的一样，在java文件下。
+
+这个就不需要配置了，但是要添加依赖
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-freemarker</artifactId>
+    </dependency>
+</dependencies>

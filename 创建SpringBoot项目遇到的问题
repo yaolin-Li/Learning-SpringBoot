@@ -1,0 +1,26 @@
+创建流程：
+    File-->New-->Project-->Maven-->Maven Project
+目前是初学，勾选Creat a simple Project-->next
+Group Id和Artifact Id任意
+
+但是！！！！！！
+Parent Project里的Group Id和Artifact Id就要思考一下了。
+这里我踩到坑了。由于学习的教程比较老，推荐使用的SpringBoot
+版本在我的机器上根本用不了。
+    强行使用版本不一致的Spring Boot，生成的项目文件会不全
+    只有一个src和一个pom.xml。而且pom.xml里还报错。
+    Parent那个标签会报路径错误和无法找到。
+
+所以我建议看到这个错误，可以去官网好好看一下各个版本的使用情况。
+我目前（2019/7/14）使用的是java1.8.1和Spring Boot 2.1.6.RELEASE。
+实在没有头绪的可以去https://start.spring.io/ 这个网站上生成一个
+新的Spring Boot文件，解压后用eclipse的File-->import来导入项目
+
+在pox.xml中添加，作为springboot的启动器，这个启动器就是一个jar包的集合。
+(spring-boot-starter-web包括tomcat和springMVC)
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+</dependencies>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Thymeleaf入门</title>
+</head>
+<body>
+    <span th:text="Hello"></span>
+    <hr/>
+    <span th:text="${msg}"></span>
+    <hr/>
+    <input type="text" name="username" th:value="${msg}"/>
+    <hr/>
+    <!--
+    判断字符串是否为空
+    Thymeleaf内置对象
+    注意：
+    1.内置对象一定要用#
+    2.大部分内置对象都以s结尾
+    -->
+    <span th:text="${#strings.isEmpty(msg)}"></span>
+    <hr/>
+    <!--
+    判断字符串是否为包含子串
+    -->
+    <span th:text="${#strings.contains(msg,'9')}"></span>
+    <span th:text="${#strings.contains(msg,'T')}"></span>
+    <hr/>
+    <!--
+    判断字符串是否为以子串开头
+    -->
+    <span th:text="${#strings.startsWith(msg,'A')}"></span>
+    <span th:text="${#strings.startsWith(msg,'T')}"></span>
+    <hr/>
+    <!--
+    判断字符串是否为以子串结尾
+    -->
+    <span th:text="${#strings.endsWith(msg,'A')}"></span>
+    <span th:text="${#strings.endsWith(msg,'T')}"></span>
+    <hr/>
+    <!--
+    判断字符串长度
+    -->
+    <span th:text="${#strings.length(msg)}"></span>
+    <hr/>
+    <!--
+    判断字符串中字符的位置
+    -->
+    <span th:text="${#strings.indexOf(msg,'h')}"></span>
+    <hr/>
+    <!--
+    截取子串
+    一个参数截取到结尾
+    两个参数包含开始不包含结束
+    -->
+    <span th:text="${#strings.substring(msg,13)}"></span>
+    <span th:text="${#strings.substring(msg,13,14)}"></span>
+    <hr/>
+    <!--
+    截取子串
+    一个参数截取到结尾
+    两个参数包含开始不包含结束
+    -->
+    <span th:text="${#strings.toUpperCase(msg)}"></span>
+    <span th:text="${#strings.toLowerCase(msg)}"></span>
+</body>
+</html>
