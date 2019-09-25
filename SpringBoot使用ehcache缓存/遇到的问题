@@ -1,0 +1,35 @@
+
+spring.cache.ehcache.config=classpath:/ehcache.xml
+记得凡是要用路径的，都要加上classpath，否则会找不到。
+
+重点是使用ServiceImpl里的@Cacheable(value = "users")。
+    @Cacheable的作用：把方法的返回值添加到Ehcache中做缓存
+    value属性：制定一个Ehcache配置文件中的缓存策略，如果没有指定缓存策略，那么使用默认的缓存策略。
+
+@Cacheable(value = "users",key = "#pageable.pageSize")//pageSize是一个属性，表示每页产生多少条
+    key：给储存的值起个名字。在查询时如果有名称相同的，那么则已知从缓存中将数据返回。
+    存在的意义是能够在缓存里找到需要的值，没有key默认是方法的入参。
+    @Test
+    public void testFindUserByPage(){
+        Pageable pageable = PageRequest.of(0,2);
+        System.out.println(this.usersService.findUserByPage(pageable).getTotalElements());
+        System.out.println(this.usersService.findUserByPage(pageable).getTotalElements());
+        pageable = PageRequest.of(1,2);
+        System.out.println(this.usersService.findUserByPage(pageable).getTotalElements());
+    }
+    如果使用key = "#pageable“（等于不写）当对象发生改变，那么默认情况下key会改变。
+        Hibernate: select users0_.id as id1_0_, users0_.address as address2_0_, users0_.age as age3_0_, users0_.name as name4_0_ from t_users users0_ limit ?
+        Hibernate: select count(users0_.id) as col_0_0_ from t_users users0_
+        3
+        3
+        Hibernate: select users0_.id as id1_0_, users0_.address as address2_0_, users0_.age as age3_0_, users0_.name as name4_0_ from t_users users0_ limit ?, ?
+        3
+
+    如果使用key = "#pageable.pageSize"一个不变的属性，那么就能够找到同样的值。
+        Hibernate: select users0_.id as id1_0_, users0_.address as address2_0_, users0_.age as age3_0_, users0_.name as name4_0_ from t_users users0_ limit ?
+        Hibernate: select count(users0_.id) as col_0_0_ from t_users users0_
+        3
+        3
+        3
+
+@CacheEvict(value="users",allEntries=true):清空缓存策略的对象
