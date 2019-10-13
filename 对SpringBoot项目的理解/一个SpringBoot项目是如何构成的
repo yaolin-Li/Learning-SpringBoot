@@ -1,5 +1,5 @@
 1.在pom.xml文件中引入相关依赖
-2.创建一个启动类文件
+2.自带一个启动类文件
 3.配置application.properties
 4.编写一个实体类
 5.基于JPA，实现DAO层
